@@ -17,11 +17,14 @@
 /* ********************************************* */
 const SPELEN = 1;
 const GAMEOVER = 2;
+const KEY_a = 65; 
+const KEY_d = 65; 
 var spelStatus = SPELEN;
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
 var health = 100;  // health van speler
+var snelheid = 2; // snelheid speler
 
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
@@ -31,8 +34,14 @@ var health = 100;  // health van speler
  * Updatet globale variabelen met posities van speler, vijanden en kogels
  */
 var beweegAlles = function() {
+  
   // speler
-
+  if (keyIsDown(KEY_a)) {
+spelerX = spelerX - snelheid;
+  }
+  if (keyIsDown(KEY_d)) {
+  spelerX = spelerX - snelheid;
+    }
   // vijand
 
   // kogel
@@ -57,7 +66,8 @@ var verwerkBotsing = function() {
  */
 var tekenAlles = function() {
   // achtergrond
-
+fill("green")
+  rect(0,0,1280,720);
   // vijand
 
   // kogel
