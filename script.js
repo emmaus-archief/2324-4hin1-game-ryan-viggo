@@ -18,13 +18,18 @@
 const SPELEN = 1;
 const GAMEOVER = 2;
 const KEY_a = 65; 
-const KEY_d = 65; 
+const KEY_d = 68; 
 var spelStatus = SPELEN;
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
 var health = 100;  // health van speler
-var snelheid = 2; // snelheid speler
+var snelheid = 3; // snelheid speler
+
+var VijandX = 700; // x-positie van speler
+var VijandY = 600; // y-positie van speler
+var healthVijand = 100;  // health van speler
+var snelheidVijand = 3; // snelheid speler
 
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
@@ -40,7 +45,7 @@ var beweegAlles = function() {
 spelerX = spelerX - snelheid;
   }
   if (keyIsDown(KEY_d)) {
-  spelerX = spelerX - snelheid;
+  spelerX = spelerX + snelheid;
     }
   // vijand
 
@@ -55,6 +60,10 @@ spelerX = spelerX - snelheid;
 var verwerkBotsing = function() {
   // botsing speler tegen vijand
 
+  if (spelerX - VijandX < 50 &&
+      spelerX - VijandX > -50) {
+    console.log("Botsing"); 
+  }
   // botsing kogel tegen vijand
 
   // update punten en health
@@ -69,7 +78,10 @@ var tekenAlles = function() {
 fill("green")
   rect(0,0,1280,720);
   // vijand
-
+  fill("red");
+  rect(VijandX - 25, VijandY - 25, 50, 50);
+  fill("black");
+  ellipse(VijandX, VijandY, 10, 10);
   // kogel
 
   // speler
