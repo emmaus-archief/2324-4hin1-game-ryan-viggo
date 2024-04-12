@@ -53,7 +53,6 @@ var beweegAlles = function() {
   }
   // kogel
 };
-a
 /**
  * Checkt botsingen
  */
