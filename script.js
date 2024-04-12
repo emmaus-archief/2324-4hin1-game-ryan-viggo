@@ -17,8 +17,8 @@
 /* ********************************************* */
 const SPELEN = 1;
 const GAMEOVER = 2;
-const KEY_a = 65; 
-const KEY_d = 68; 
+const KEY_a = 65;
+const KEY_d = 68;
 var spelStatus = SPELEN;
 
 var spelerX = 600; // x-positie van speler
@@ -39,17 +39,35 @@ var snelheidVijand = 3; // snelheid speler
  * Updatet globale variabelen met posities van speler, vijanden en kogels
  */
 var beweegAlles = function() {
-  
+
   // speler
   if (keyIsDown(KEY_a)) {
-spelerX = spelerX - snelheid;
+    spelerX = spelerX - snelheid;
   }
   if (keyIsDown(KEY_d)) {
-  spelerX = spelerX + snelheid;
-    }
+    spelerX = spelerX + snelheid;
+  }
   // vijand
-
+  if (vijandRaaktSpeler() == false) {
+    VijandX = VijandX - 1;
+  }
   // kogel
+};
+a
+/**
+ * Checkt botsingen
+ */
+var vijandRaaktSpeler = function() {
+  // botsing speler tegen vijand
+
+  if (spelerX - VijandX < 50 &&
+    spelerX - VijandX > -50 &&
+    spelerY - VijandY < 50 &&
+    spelerY - VijandY > -50) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 /**
@@ -61,8 +79,10 @@ var verwerkBotsing = function() {
   // botsing speler tegen vijand
 
   if (spelerX - VijandX < 50 &&
-      spelerX - VijandX > -50) {
-    console.log("Botsing"); 
+    spelerX - VijandX > -50 &&
+    spelerY - VijandY < 50 &&
+    spelerY - VijandY > -50) {
+    console.log("Botsing");
   }
   // botsing kogel tegen vijand
 
@@ -75,8 +95,8 @@ var verwerkBotsing = function() {
  */
 var tekenAlles = function() {
   // achtergrond
-fill("green")
-  rect(0,0,1280,720);
+  fill("green")
+  rect(0, 0, 1280, 720);
   // vijand
   fill("red");
   rect(VijandX - 25, VijandY - 25, 50, 50);
