@@ -17,10 +17,16 @@
 /* ********************************************* */
 const SPELEN = 1;
 const GAMEOVER = 2;
+const UITLEG = 3;
+
 const KEY_a = 65;
 const KEY_d = 68;
+
 const KEY_j = 74;
 const KEY_l = 76;
+const KEY_o = 79;
+const KEY_u = 85;
+
 var spelStatus = SPELEN;
 
 var spelerX = 600; // x-positie van speler
@@ -49,6 +55,7 @@ var beweegAlles = function() {
   if (keyIsDown(KEY_d)) {
     spelerX = spelerX + snelheid;
   }
+ 
   // vijand
   if (keyIsDown(KEY_j)) {
     VijandX = VijandX - snelheidVijand;
@@ -56,23 +63,16 @@ var beweegAlles = function() {
    if (keyIsDown(KEY_l)) {
     VijandX = VijandX + snelheidVijand;
   }
+  if (keyIsDown(KEY_u)) {
+    VijandX = VijandX - snelheidVijand - snelheidVijand;
+  }
+  if (keyIsDown(KEY_o)) {
+    VijandX = VijandX + snelheidVijand + snelheidVijand;
+  }
+  
   // kogel
 };
-/**
- * Checkt botsingen
- */
-var vijandRaaktSpeler = function() {
-  // botsing speler tegen vijand
 
-  if (spelerX - VijandX < 50 &&
-    spelerX - VijandX > -50 &&
-    spelerY - VijandY < 50 &&
-    spelerY - VijandY > -50) {
-    return true;
-  } else {
-    return false;
-  }
-};
 
 /**
  * Checkt botsingen
@@ -87,6 +87,7 @@ var verwerkBotsing = function() {
     spelerY - VijandY < 50 &&
     spelerY - VijandY > -50) {
     console.log("Botsing");
+    health = health - 1;
   }
   // botsing kogel tegen vijand
 
@@ -148,8 +149,25 @@ function draw() {
     if (health <= 0) {
       spelStatus = GAMEOVER;
     }
+      console.log("spelen");
   }
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm
+   console.log("game over");
+    textSize(50);
+    fill("white");
+    text("game over, druk spatie voor start", 100, 100);
+    if (keyIsDown(32)) {
+     spelSTATUS = UITLEG;
+    }
+  }
+    if (spelStatus === UITLEG) {
+    console.log("uitleg");
+    textSize(50) 
+    fill("white");
+    text("uitleg: doe je ding, druk op enter", 100, 100);
+    if (keyIsDown(13)) {
+      spelStatus = SPELEN
+    }
   }
 }
