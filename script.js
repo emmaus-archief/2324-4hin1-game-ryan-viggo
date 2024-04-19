@@ -19,6 +19,8 @@ const SPELEN = 1;
 const GAMEOVER = 2;
 const KEY_a = 65;
 const KEY_d = 68;
+const KEY_j = 74;
+const KEY_l = 76;
 var spelStatus = SPELEN;
 
 var spelerX = 600; // x-positie van speler
@@ -48,8 +50,11 @@ var beweegAlles = function() {
     spelerX = spelerX + snelheid;
   }
   // vijand
-  if (vijandRaaktSpeler() == false) {
-    VijandX = VijandX - 1;
+  if (keyIsDown(KEY_j)) {
+    VijandX = VijandX - snelheidVijand;
+  }
+   if (keyIsDown(KEY_l)) {
+    VijandX = VijandX + snelheidVijand;
   }
   // kogel
 };
