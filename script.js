@@ -159,6 +159,7 @@ function draw() {
     fill("white");
     text("game over, druk spatie voor start", 100, 100);
     if (keyIsDown(32)) {
+      health = health + 100;
       spelStatus = UITLEG;
     }
   }
