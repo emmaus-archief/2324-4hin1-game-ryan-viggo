@@ -28,7 +28,7 @@ const KEY_l = 76;
 const KEY_o = 79;
 const KEY_u = 85;
 
-var spelStatus = SPELEN;
+
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
@@ -143,6 +143,18 @@ function setup() {
  * uitgevoerd door de p5 library, nadat de setup functie klaar is
  */
 function draw() {
+  if (spelStatus === UITLEG) {
+    console.log("uitleg");
+    textSize(50)
+    fill("green");
+    rect(0, 0, 1280, 720);
+    fill("white");
+    text("uitleg: doe je ding, druk op enter", 100, 100);
+    if (keyIsDown(13)) {
+      spelerX = 400;
+      spelStatus = SPELEN
+    }
+  }
   if (spelStatus === SPELEN) {
     beweegAlles();
     verwerkBotsing();
@@ -161,18 +173,6 @@ function draw() {
     if (keyIsDown(32)) {
       health = health + 100;
       spelStatus = UITLEG;
-    }
-  }
-  if (spelStatus === UITLEG) {
-    console.log("uitleg");
-    textSize(50)
-    fill("green");
-    rect(0, 0, 1280, 720);
-    fill("white");
-    text("uitleg: doe je ding, druk op enter", 100, 100);
-    if (keyIsDown(13)) {
-      spelerX = 400;
-      spelStatus = SPELEN
     }
   }
 }
