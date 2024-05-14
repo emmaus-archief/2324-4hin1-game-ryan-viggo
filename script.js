@@ -149,7 +149,7 @@ function draw() {
     fill("green");
     rect(0, 0, 1280, 720);
     fill("white");
-    text("uitleg: doe je ding, druk op enter", 100, 100);
+    text("uitleg: doe je ding, druk op enter", 250, 100);
     if (keyIsDown(13)) {
       spelerX = 400;
       spelStatus = SPELEN
