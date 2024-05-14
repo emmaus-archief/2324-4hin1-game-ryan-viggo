@@ -18,6 +18,7 @@
 const SPELEN = 1;
 const GAMEOVER = 2;
 const UITLEG = 3;
+var spelStatus = UITLEG;
 
 const KEY_a = 65;
 const KEY_d = 68;
@@ -55,12 +56,12 @@ var beweegAlles = function() {
   if (keyIsDown(KEY_d)) {
     spelerX = spelerX + snelheid;
   }
- 
+
   // vijand
   if (keyIsDown(KEY_j)) {
     VijandX = VijandX - snelheidVijand;
   }
-   if (keyIsDown(KEY_l)) {
+  if (keyIsDown(KEY_l)) {
     VijandX = VijandX + snelheidVijand;
   }
   if (keyIsDown(KEY_u)) {
@@ -69,7 +70,7 @@ var beweegAlles = function() {
   if (keyIsDown(KEY_o)) {
     VijandX = VijandX + snelheidVijand + snelheidVijand;
   }
-  
+
   // kogel
 };
 
@@ -149,24 +150,27 @@ function draw() {
     if (health <= 0) {
       spelStatus = GAMEOVER;
     }
-      console.log("spelen");
+    console.log("spelen");
   }
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm
-   console.log("game over");
+    console.log("game over");
     textSize(50);
     fill("white");
     text("game over, druk spatie voor start", 100, 100);
     if (keyIsDown(32)) {
-     spelSTATUS = UITLEG;
+      spelStatus = UITLEG;
     }
   }
-    if (spelStatus === UITLEG) {
+  if (spelStatus === UITLEG) {
     console.log("uitleg");
-    textSize(50) 
+    textSize(50)
+    fill("green");
+    rect(0, 0, 1280, 720);
     fill("white");
     text("uitleg: doe je ding, druk op enter", 100, 100);
     if (keyIsDown(13)) {
+      spelerX = 400;
       spelStatus = SPELEN
     }
   }
