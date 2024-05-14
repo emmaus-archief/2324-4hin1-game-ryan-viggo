@@ -156,8 +156,8 @@ function draw() {
     // teken game-over scherm
     console.log("game over");
     textSize(50);
-    fill("white");
-    text("game over, druk spatie voor start", 100, 100);
+    fill("orange");
+    text("GAME OVER, druk spatie voor start", 200, 100);
     if (keyIsDown(32)) {
       health = health + 100;
       spelStatus = UITLEG;
@@ -169,7 +169,7 @@ function draw() {
     fill("green");
     rect(0, 0, 1280, 720);
     fill("white");
-    text("uitleg: doe je ding, druk op enter", 100, 100);
+    text("uitleg: herstart het spel door op enter te drukken", 100, 100);
     if (keyIsDown(13)) {
       spelerX = 400;
       spelStatus = SPELEN
