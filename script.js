@@ -205,6 +205,10 @@ function draw() {
     text("GAME OVER, druk spatie voor start", 200, 100);
     if (keyIsDown(32)) {
       health = health + 100;
+      spelerX = 600
+      spelerY = 600
+      VijandX = 700
+      VijandY = 600
       spelStatus = UITLEG;
     }
   }
