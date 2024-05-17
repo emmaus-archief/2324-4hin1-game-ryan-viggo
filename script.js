@@ -22,6 +22,8 @@ var spelStatus = UITLEG;
 
 const KEY_a = 65;
 const KEY_d = 68;
+const KEY_q = 81;
+const KEY_e = 69; 
 
 const KEY_j = 74;
 const KEY_l = 76;
@@ -32,6 +34,11 @@ var toetsOIngedruktNu = false;
 var toetsOIngedruktVorige = false;
 var toetsUIngedruktNu = false;
 var toetsUIngedruktVorige = false;
+
+var toetsEIngedruktNu = false;
+var toetsEIngedruktVorige = false;
+var toetsQIngedruktNu = false;
+var toetsQIngedruktVorige = false;
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
@@ -59,6 +66,20 @@ var beweegAlles = function() {
   }
   if (keyIsDown(KEY_d)) {
     spelerX = spelerX + snelheid;
+  }
+  
+  toetsQIngedruktVorige = toetsQIngedruktNu
+  toetsQIngedruktNu = keyIsDown(KEY_q)
+  if (toetsQIngedruktVorige === false && 
+     toetsQIngedruktNu === true) {
+    spelerX = spelerX - 100;
+  }
+
+  toetsEIngedruktVorige = toetsEIngedruktNu
+  toetsEIngedruktNu = keyIsDown(KEY_e)
+  if (toetsEIngedruktVorige === false && 
+     toetsEIngedruktNu === true) {
+    spelerX = spelerX + 100;
   }
 
   // vijand
