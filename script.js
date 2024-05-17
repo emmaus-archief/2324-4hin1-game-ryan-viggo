@@ -28,7 +28,10 @@ const KEY_l = 76;
 const KEY_o = 79;
 const KEY_u = 85;
 
-
+var toetsOIngedruktNu = false;
+var toetsOIngedruktVorige = false;
+var toetsUIngedruktNu = false;
+var toetsUIngedruktVorige = false;
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
@@ -39,6 +42,7 @@ var VijandX = 700; // x-positie van speler
 var VijandY = 600; // y-positie van speler
 var healthVijand = 100;  // health van speler
 var snelheidVijand = 3; // snelheid speler
+
 
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
@@ -64,11 +68,19 @@ var beweegAlles = function() {
   if (keyIsDown(KEY_l)) {
     VijandX = VijandX + snelheidVijand;
   }
-  if (keyIsDown(KEY_u)) {
-    VijandX = VijandX - snelheidVijand - snelheidVijand;
+
+  toetsUIngedruktVorige = toetsUIngedruktNu
+  toetsUIngedruktNu = keyIsDown(KEY_u)
+  if (toetsUIngedruktVorige === false && 
+     toetsUIngedruktNu === true) {
+    VijandX = VijandX - 100;
   }
-  if (keyIsDown(KEY_o)) {
-    VijandX = VijandX + snelheidVijand + snelheidVijand;
+
+  toetsOIngedruktVorige = toetsOIngedruktNu
+  toetsOIngedruktNu = keyIsDown(KEY_o)
+  if (toetsOIngedruktVorige === false && 
+     toetsOIngedruktNu === true) {
+    VijandX = VijandX + 100;
   }
 
   // kogel
