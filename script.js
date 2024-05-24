@@ -23,13 +23,14 @@ var spelStatus = UITLEG;
 const KEY_a = 65;
 const KEY_d = 68;
 const KEY_q = 81;
-const KEY_e = 69; 
+const KEY_e = 69;
 
 const KEY_j = 74;
 const KEY_l = 76;
 const KEY_o = 79;
 const KEY_u = 85;
 
+const KEY_w = 87;
 var toetsOIngedruktNu = false;
 var toetsOIngedruktVorige = false;
 var toetsUIngedruktNu = false;
@@ -50,7 +51,10 @@ var VijandY = 600; // y-positie van speler
 var healthVijand = 100;  // health van speler
 var snelheidVijand = 3; // snelheid speler
 
-
+var kogelX = 400;
+var kogelY = 300;
+var kogelVliegt = false;
+var KogelVliegTijd = 1;
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -67,18 +71,18 @@ var beweegAlles = function() {
   if (keyIsDown(KEY_d)) {
     spelerX = spelerX + snelheid;
   }
-  
+
   toetsQIngedruktVorige = toetsQIngedruktNu
   toetsQIngedruktNu = keyIsDown(KEY_q)
-  if (toetsQIngedruktVorige === false && 
-     toetsQIngedruktNu === true) {
+  if (toetsQIngedruktVorige === false &&
+    toetsQIngedruktNu === true) {
     spelerX = spelerX - 100;
   }
 
   toetsEIngedruktVorige = toetsEIngedruktNu
   toetsEIngedruktNu = keyIsDown(KEY_e)
-  if (toetsEIngedruktVorige === false && 
-     toetsEIngedruktNu === true) {
+  if (toetsEIngedruktVorige === false &&
+    toetsEIngedruktNu === true) {
     spelerX = spelerX + 100;
   }
 
@@ -92,19 +96,35 @@ var beweegAlles = function() {
 
   toetsUIngedruktVorige = toetsUIngedruktNu
   toetsUIngedruktNu = keyIsDown(KEY_u)
-  if (toetsUIngedruktVorige === false && 
-     toetsUIngedruktNu === true) {
+  if (toetsUIngedruktVorige === false &&
+    toetsUIngedruktNu === true) {
     VijandX = VijandX - 100;
   }
 
   toetsOIngedruktVorige = toetsOIngedruktNu
   toetsOIngedruktNu = keyIsDown(KEY_o)
-  if (toetsOIngedruktVorige === false && 
-     toetsOIngedruktNu === true) {
+  if (toetsOIngedruktVorige === false &&
+    toetsOIngedruktNu === true) {
     VijandX = VijandX + 100;
   }
 
   // kogel
+
+  if (kogelVliegt === false &&
+    keyIsDown(KEY_w)) {
+    KogelVliegTijd = 0;
+    kogelVliegt = true;
+    kogelX = spelerX;
+    kogelY = spelerY;
+  }
+  if (kogelVliegt === true) {
+    kogelX = kogelX + 3;
+    KogelVliegTijd + 1;
+  }
+  if (kogelVliegt === true &&
+    KogelVliegTijd === 1) {
+    kogelVliegt = false;
+  }
 };
 
 
@@ -142,7 +162,8 @@ var tekenAlles = function() {
   fill("black");
   ellipse(VijandX, VijandY, 10, 10);
   // kogel
-
+  fill("red");
+  ellipse(kogelX, kogelY, 20, 20);
   // speler
   fill("white");
   rect(spelerX - 25, spelerY - 25, 50, 50);
