@@ -55,6 +55,8 @@ var kogelX = 400;
 var kogelY = 300;
 var kogelVliegt = false;
 var KogelVliegTijd = 1;
+
+var Max_health = 100
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -171,12 +173,21 @@ var tekenAlles = function() {
   ellipse(spelerX, spelerY, 10, 10);
 
   // punten en health
-
+  drawHealthBars(50, 50, health, Max_health);
+  drawHealthBars(150, 50, healthVijand, Max_health);
 };
 
 /* ********************************************* */
 /* setup() en draw() functies / hoofdprogramma   */
 /* ********************************************* */
+function getHealthbarwidth(currentHealth, Max_health) {
+  return (currentHealth / Max_health) * 100;
+}
+function drawHealthBars(x, y, health, Max_health) {
+  
+  fill("red")
+  rect(x, y, getHealthbarwidth(health, Max_health), 20);
+}
 
 /**
  * setup
