@@ -145,6 +145,14 @@ var verwerkBotsing = function() {
     console.log("Botsing");
     health = health - 1;
   }
+
+  if (VijandX - spelerX < 50 &&
+    VijandX - spelerX > -50 &&
+    VijandY - spelerY < 50 &&
+    VijandY - spelerY > -50) {
+    console.log("Botsing");
+    healthVijand = healthVijand - 1;
+  }
   // botsing kogel tegen vijand
 
   // update punten en health
@@ -173,20 +181,23 @@ var tekenAlles = function() {
   ellipse(spelerX, spelerY, 10, 10);
 
   // punten en health
-  drawHealthBars(50, 50, health, Max_health);
-  drawHealthBars(150, 50, healthVijand, Max_health);
+  drawHealthBars(30, 50, health, Max_health);
+  drawHealthBars(1050, 50, healthVijand, Max_health);
 };
 
 /* ********************************************* */
 /* setup() en draw() functies / hoofdprogramma   */
 /* ********************************************* */
 function getHealthbarwidth(currentHealth, Max_health) {
-  return (currentHealth / Max_health) * 100;
+  return (currentHealth / Max_health) * 200;
 }
 function drawHealthBars(x, y, health, Max_health) {
-  
-  fill("red")
-  rect(x, y, getHealthbarwidth(health, Max_health), 20);
+  stroke("black");
+  strokeWeight(5);
+  fill("red");
+  rect(x, y, getHealthbarwidth(health, Max_health), 30);
+  noStroke();
+  strokeWeight(1);
 }
 
 /**
