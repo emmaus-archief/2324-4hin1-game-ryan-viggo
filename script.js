@@ -200,6 +200,7 @@ function drawHealthBars(x, y, health, Max_health) {
   strokeWeight(1);
 }
 
+
 /**
  * setup
  * de code in deze functie wordt één keer uitgevoerd door
@@ -248,6 +249,7 @@ function draw() {
     text("GAME OVER, druk spatie voor start", 200, 100);
     if (keyIsDown(32)) {
       health = health + 100;
+      healthVijand = healthVijand + 100;
       spelerX = 600
       spelerY = 600
       VijandX = 700
