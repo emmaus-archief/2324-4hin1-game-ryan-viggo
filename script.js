@@ -48,7 +48,7 @@ var spelerY = 600; // y-positie van speler
 var health = 100;  // health van speler
 var snelheid = 3; // snelheid speler
 
-var VijandX = 700; // x-positie van speler
+var VijandX = 850; // x-positie van speler
 var VijandY = 600; // y-positie van speler
 var healthVijand = 100;  // health van speler
 var snelheidVijand = 3; // snelheid speler
@@ -152,8 +152,8 @@ var beweegAlles = function() {
     kogelY = spelerY;
   }
   if (kogelVliegt === true) {
-    kogelX = kogelX = spelerX + 100;
-    KogelVliegTijd = 1 + 1;
+    kogelX = kogelX + 20;
+    KogelVliegTijd + 1;
   }
   if (kogelVliegt === true &&
     KogelVliegTijd === 3) {
@@ -215,7 +215,7 @@ var tekenAlles = function() {
 
   // punten en health
   drawHealthBars(30, 50, health, Max_health);
-  drawHealthBars(1050, 50, healthVijand, Max_health);
+  drawHealthBarsVijand(1050, 50, healthVijand, Max_health);
 };
 
 /* ********************************************* */
@@ -227,11 +227,20 @@ function getHealthbarwidth(currentHealth, Max_health) {
 function drawHealthBars(x, y, health, Max_health) {
   stroke("black");
   strokeWeight(5);
+  fill("white");
+  rect(x, y, getHealthbarwidth(health, Max_health), 30);
+  noStroke();
+  strokeWeight(1);
+}
+function drawHealthBarsVijand(x, y, healthVijand, Max_health) {
+  stroke("black");
+  strokeWeight(5);
   fill("red");
   rect(x, y, getHealthbarwidth(health, Max_health), 30);
   noStroke();
   strokeWeight(1);
 }
+
 
 
 /**
@@ -285,7 +294,7 @@ function draw() {
       healthVijand = healthVijand + 100;
       spelerX = 600
       spelerY = 600
-      VijandX = 700
+      VijandX = 850
       VijandY = 600
       spelStatus = UITLEG;
     }
