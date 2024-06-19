@@ -31,6 +31,8 @@ const KEY_o = 79;
 const KEY_u = 85;
 
 const KEY_w = 87;
+const KEY_S = 83;
+const KEY_k = 75;
 var toetsOIngedruktNu = false;
 var toetsOIngedruktVorige = false;
 var toetsUIngedruktNu = false;
@@ -51,7 +53,13 @@ var VijandY = 600; // y-positie van speler
 var healthVijand = 100;  // health van speler
 var snelheidVijand = 3; // snelheid speler
 
-var kogelX = 400;
+var VijandSpringt = false;
+var spelerSpringt = false;
+var springSnelheid = 0;
+var springSnelheidStart = 8;
+var zwaartekracht = 0.4;
+
+var kogelX = -10;
 var kogelY = 300;
 var kogelVliegt = false;
 var KogelVliegTijd = 1;
@@ -88,6 +96,19 @@ var beweegAlles = function() {
     spelerX = spelerX + 100;
   }
 
+  if (spelerSpringt === false && keyIsDown(KEY_S)) {
+    spelerSpringt = true;
+    springSnelheid = springSnelheidStart;
+  }
+  if (spelerSpringt === true) {
+    spelerY = spelerY - springSnelheid;
+    springSnelheid = springSnelheid - zwaartekracht;
+  }
+  if (spelerY > 595) {
+    spelerSpringt = false;
+  }
+
+ 
   // vijand
   if (keyIsDown(KEY_j)) {
     VijandX = VijandX - snelheidVijand;
@@ -110,6 +131,17 @@ var beweegAlles = function() {
     VijandX = VijandX + 100;
   }
 
+  if (VijandSpringt === false && keyIsDown(KEY_k)) {
+    VijandSpringt = true;
+    springSnelheid = springSnelheidStart;
+  }
+  if (VijandSpringt === true) {
+    VijandY = VijandY - springSnelheid;
+    springSnelheid = springSnelheid - zwaartekracht;
+  }
+  if (VijandY > 595) {
+    VijandSpringt = false;
+  }
   // kogel
 
   if (kogelVliegt === false &&
@@ -120,12 +152,13 @@ var beweegAlles = function() {
     kogelY = spelerY;
   }
   if (kogelVliegt === true) {
-    kogelX = kogelX + 3;
-    KogelVliegTijd + 1;
+    kogelX = kogelX = spelerX + 100;
+    KogelVliegTijd = 1 + 1;
   }
   if (kogelVliegt === true &&
-    KogelVliegTijd === 1) {
+    KogelVliegTijd === 3) {
     kogelVliegt = false;
+
   }
 };
 
