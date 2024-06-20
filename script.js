@@ -75,6 +75,12 @@ var Max_health = 100
 var templeImg;
 var JungleImg;
 var pixelspeler;
+var pixelvijand;
+
+var FightBoxX = 300;
+var FightBoxY = 45;
+var fightboxonderX = 335;
+var fightboxonderY = 100;
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -157,7 +163,7 @@ var beweegAlles = function() {
   if (kogelVliegt === false &&
     keyIsDown(KEY_S)) {
     kogelVliegt = true;
-    kogelX = spelerX;
+    kogelX = spelerX + 70;
     kogelY = spelerY;
   }
   if (kogelVliegt === true) {
@@ -171,7 +177,7 @@ var beweegAlles = function() {
   if (VijandkogelVliegt === false &&
     keyIsDown(KEY_k)) {
     VijandkogelVliegt = true;
-    VijandkogelX = VijandX;
+    VijandkogelX = VijandX + 70;
     VijandkogelY = VijandY;
   }
   if (VijandkogelVliegt === true) {
@@ -222,10 +228,7 @@ var tekenAlles = function() {
   // achtergrond
   image(templeImg, 0, 0, width, height);
   // vijand
-  fill("red");
-  rect(VijandX - 25, VijandY - 25, 50, 50);
-  fill("black");
-  ellipse(VijandX, VijandY, 10, 10);
+ 
   // kogel
   fill("red");
   ellipse(kogelX, kogelY, 20, 20);
@@ -233,11 +236,13 @@ var tekenAlles = function() {
   fill("red");
   ellipse(VijandkogelX, VijandkogelY, 20, 20);
   // speler
-  fill("white");
-  rect(spelerX - 25, spelerY - 25, 50, 50);
-  fill("black");
-  ellipse(spelerX, spelerY, 10, 10);
 
+   //FIGHT box onder
+  fill("lichtgreen");
+  rect(fightboxonderX, fightboxonderY, 600, 75, 45);
+  //FIGHT box
+  fill("darkgreen");
+  rect(FightBoxX, FightBoxY, 675, 75, 45);
   // punten en health
   drawHealthBars(30, 50, health, Max_health);
   drawHealthBarsVijand(1050, 50, healthVijand, Max_health);
@@ -279,6 +284,9 @@ function setup() {
   templeImg = loadImage("Teemple.jpeg");
   createCanvas(1280, 720);
   JungleImg = loadImage("Jungle.png");
+
+  pixelspeler = loadImage("pixelspeler.png");
+  pixelvijand = loadImage("pixelvijand.png")
   // Kleur de achtergrond blauw, zodat je het kunt zien
   background('blue');
 }
@@ -320,6 +328,16 @@ function draw() {
     if (healthVijand <= 0) {
       spelStatus = GAMEOVERvijand;
     }
+    image(pixelspeler, spelerX - 25, spelerY - 100, 200, 200);
+    // tekent de zelfgemaakte speler character
+    image(pixelvijand, VijandX - 25, VijandY - 100, 200, 200);
+    textSize(50);
+    fill("orange");
+    strokeWeight(10);
+    stroke("black");
+    text("FIGHT", 550, 100);
+    
+    
     console.log("spelen");
   }
   if (spelStatus === GAMEOVERspeler) {
