@@ -229,7 +229,7 @@ var tekenAlles = function() {
   image(templeImg, 0, 0, width, height);
   // vijand
 
-  // kogel
+  // kogeel
   fill("red");
   ellipse(kogelX, kogelY, 20, 20);
   // VijandKogel
