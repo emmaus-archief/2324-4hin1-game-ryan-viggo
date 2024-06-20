@@ -316,8 +316,8 @@ function draw() {
     fill("orange");
     text("GAME OVER SPELER 2 WINT, druk spatie voor start", 50, 200);
     if (keyIsDown(32)) {
-      health = health + 100;
-      healthVijand = healthVijand + 100;
+      health = health = 100;
+      healthVijand = healthVijand = 100;
       spelerX = 600
       spelerY = 600
       VijandX = 850
@@ -332,8 +332,8 @@ function draw() {
     fill("orange");
     text("GAME OVER SPELER 1 WINT, druk spatie voor start", 50, 200);
     if (keyIsDown(32)) {
-      health = health + 100;
-      healthVijand = healthVijand + 100;
+      health = health = 100;
+      healthVijand = healthVijand = 100;
       spelerX = 600
       spelerY = 600
       VijandX = 850
