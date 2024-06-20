@@ -31,6 +31,7 @@ const KEY_o = 79;
 const KEY_u = 85;
 
 const KEY_w = 87;
+const KEY_i = 73;
 const KEY_S = 83;
 const KEY_k = 75;
 var toetsOIngedruktNu = false;
@@ -63,6 +64,11 @@ var kogelX = -10;
 var kogelY = 300;
 var kogelVliegt = false;
 var KogelVliegTijd = 1;
+
+var VijandkogelX = -10;
+var VijandkogelY = 300;
+var VijandkogelVliegt = false;
+var VijandKogelVliegTijd = 1;
 
 var Max_health = 100
 var templeImg;
@@ -147,20 +153,33 @@ var beweegAlles = function() {
 
   if (kogelVliegt === false &&
     keyIsDown(KEY_w)) {
-    KogelVliegTijd = 0;
     kogelVliegt = true;
     kogelX = spelerX;
     kogelY = spelerY;
   }
   if (kogelVliegt === true) {
     kogelX = kogelX + 20;
-    KogelVliegTijd + 1;
   }
   if (kogelVliegt === true &&
-    KogelVliegTijd === 3) {
+     kogelX > 1300) {
     kogelVliegt = false;
+     }
 
+  if (VijandkogelVliegt === false &&
+    keyIsDown(KEY_i)) {
+    VijandkogelVliegt = true;
+    VijandkogelX = VijandX;
+    VijandkogelY = VijandY;
   }
+  if (VijandkogelVliegt === true) {
+    VijandkogelX = VijandkogelX - 20;
+  }
+  if (VijandkogelVliegt === true &&
+     VijandkogelX < -10) {
+    VijandkogelVliegt = false;
+     }
+
+  
 };
 
 
@@ -172,20 +191,20 @@ var beweegAlles = function() {
 var verwerkBotsing = function() {
   // botsing speler tegen vijand
 
-  if (spelerX - VijandX < 50 &&
-    spelerX - VijandX > -50 &&
-    spelerY - VijandY < 50 &&
-    spelerY - VijandY > -50) {
+  if (spelerX - VijandkogelX < 50 &&
+    spelerX - VijandkogelX > -50 &&
+    spelerY - VijandkogelY < 50 &&
+    spelerY - VijandkogelY > -50) {
     console.log("Botsing");
-    health = health - 1;
+    health = health - 5;
   }
 
-  if (VijandX - spelerX < 50 &&
-    VijandX - spelerX > -50 &&
-    VijandY - spelerY < 50 &&
-    VijandY - spelerY > -50) {
+  if (VijandX - kogelX < 50 &&
+    VijandX - kogelX > -50 &&
+    VijandY - kogelY < 50 &&
+    VijandY - kogelY > -50) {
     console.log("Botsing");
-    healthVijand = healthVijand - 1;
+    healthVijand = healthVijand - 5;
   }
   // botsing kogel tegen vijand
 
@@ -207,6 +226,9 @@ var tekenAlles = function() {
   // kogel
   fill("red");
   ellipse(kogelX, kogelY, 20, 20);
+  // VijandKogel
+  fill("red");
+  ellipse(VijandkogelX, VijandkogelY, 20, 20);
   // speler
   fill("white");
   rect(spelerX - 25, spelerY - 25, 50, 50);
@@ -236,7 +258,7 @@ function drawHealthBarsVijand(x, y, healthVijand, Max_health) {
   stroke("black");
   strokeWeight(5);
   fill("red");
-  rect(x, y, getHealthbarwidth(health, Max_health), 30);
+  rect(x, y, getHealthbarwidth(healthVijand, Max_health), 30);
   noStroke();
   strokeWeight(1);
 }
