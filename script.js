@@ -74,6 +74,7 @@ var VijandKogelVliegTijd = 1;
 var Max_health = 100
 var templeImg;
 var JungleImg;
+var pixelspeler;
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -105,7 +106,7 @@ var beweegAlles = function() {
     spelerX = spelerX + 100;
   }
 
-  if (spelerSpringt === false && keyIsDown(KEY_S)) {
+  if (spelerSpringt === false && keyIsDown(KEY_w)) {
     spelerSpringt = true;
     springSnelheid = springSnelheidStart;
   }
@@ -140,7 +141,7 @@ var beweegAlles = function() {
     VijandX = VijandX + 100;
   }
 
-  if (VijandSpringt === false && keyIsDown(KEY_k)) {
+  if (VijandSpringt === false && keyIsDown(KEY_i)) {
     VijandSpringt = true;
     springSnelheid = springSnelheidStart;
   }
@@ -154,7 +155,7 @@ var beweegAlles = function() {
   // kogel
 
   if (kogelVliegt === false &&
-    keyIsDown(KEY_w)) {
+    keyIsDown(KEY_S)) {
     kogelVliegt = true;
     kogelX = spelerX;
     kogelY = spelerY;
@@ -168,7 +169,7 @@ var beweegAlles = function() {
   }
 
   if (VijandkogelVliegt === false &&
-    keyIsDown(KEY_i)) {
+    keyIsDown(KEY_k)) {
     VijandkogelVliegt = true;
     VijandkogelX = VijandX;
     VijandkogelY = VijandY;
