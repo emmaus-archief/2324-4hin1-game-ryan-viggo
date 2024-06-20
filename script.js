@@ -163,9 +163,9 @@ var beweegAlles = function() {
     kogelX = kogelX + 20;
   }
   if (kogelVliegt === true &&
-     kogelX > 1300) {
+    kogelX > 1300) {
     kogelVliegt = false;
-     }
+  }
 
   if (VijandkogelVliegt === false &&
     keyIsDown(KEY_i)) {
@@ -177,11 +177,11 @@ var beweegAlles = function() {
     VijandkogelX = VijandkogelX - 20;
   }
   if (VijandkogelVliegt === true &&
-     VijandkogelX < -10) {
+    VijandkogelX < -10) {
     VijandkogelVliegt = false;
-     }
+  }
 
-  
+
 };
 
 
@@ -219,7 +219,7 @@ var verwerkBotsing = function() {
  */
 var tekenAlles = function() {
   // achtergrond
-   image(templeImg, 0, 0, width, height);
+  image(templeImg, 0, 0, width, height);
   // vijand
   fill("red");
   rect(VijandX - 25, VijandY - 25, 50, 50);
@@ -275,9 +275,9 @@ function drawHealthBarsVijand(x, y, healthVijand, Max_health) {
 function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
-   templeImg = loadImage("Teemple.jpeg");
+  templeImg = loadImage("Teemple.jpeg");
   createCanvas(1280, 720);
-   JungleImg = loadImage("Jungle.png");
+  JungleImg = loadImage("Jungle.png");
   // Kleur de achtergrond blauw, zodat je het kunt zien
   background('blue');
 }
@@ -294,14 +294,16 @@ function draw() {
     image(JungleImg, 0, 0, width, height);
     fill("white");
     text("START", 550, 300);
-    strokeWeight(10);
+    strokeWeight(6);
     stroke("black");
-    fill("yellow");
     textSize(50);
+    fill("yellow");
+    text("druk op enter om te beginnen", 325, 400)
     
-       
-    
-    
+
+
+
+
     if (keyIsDown(13)) {
       spelerX = 400;
       spelStatus = SPELEN
@@ -325,6 +327,8 @@ function draw() {
     textSize(50);
     fill("orange");
     text("GAME OVER SPELER 2 WINT, druk spatie voor start", 50, 200);
+    strokeWeight(5);
+    stroke("black");
     if (keyIsDown(32)) {
       health = health = 100;
       healthVijand = healthVijand = 100;
@@ -341,6 +345,8 @@ function draw() {
     textSize(50);
     fill("orange");
     text("GAME OVER SPELER 1 WINT, druk spatie voor start", 50, 200);
+    strokeWeight(5);
+    stroke("black");
     if (keyIsDown(32)) {
       health = health = 100;
       healthVijand = healthVijand = 100;
