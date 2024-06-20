@@ -73,6 +73,7 @@ var VijandKogelVliegTijd = 1;
 
 var Max_health = 100
 var templeImg;
+var JungleImg;
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -274,7 +275,9 @@ function drawHealthBarsVijand(x, y, healthVijand, Max_health) {
 function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
-   templeImg = loadImage("temple.jpg");
+   templeImg = loadImage("Teemple.jpeg");
+  createCanvas(1280, 720);
+   JungleImg = loadImage("Jungle.png");
   // Kleur de achtergrond blauw, zodat je het kunt zien
   background('blue');
 }
@@ -287,11 +290,18 @@ function setup() {
 function draw() {
   if (spelStatus === UITLEG) {
     console.log("uitleg");
-    textSize(50)
-    fill("green");
-    rect(0, 0, 1280, 720);
+    textSize(60)
+    image(JungleImg, 0, 0, width, height);
     fill("white");
-    text("uitleg: doe je ding, druk op enter", 250, 100);
+    text("START", 550, 300);
+    strokeWeight(10);
+    stroke("black");
+    fill("yellow");
+    textSize(50);
+    
+       
+    
+    
     if (keyIsDown(13)) {
       spelerX = 400;
       spelStatus = SPELEN
