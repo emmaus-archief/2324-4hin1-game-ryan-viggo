@@ -65,6 +65,7 @@ var kogelVliegt = false;
 var KogelVliegTijd = 1;
 
 var Max_health = 100
+var templeImg;
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -108,7 +109,7 @@ var beweegAlles = function() {
     spelerSpringt = false;
   }
 
- 
+
   // vijand
   if (keyIsDown(KEY_j)) {
     VijandX = VijandX - snelheidVijand;
@@ -197,8 +198,7 @@ var verwerkBotsing = function() {
  */
 var tekenAlles = function() {
   // achtergrond
-  fill("green")
-  rect(0, 0, 1280, 720);
+   image(templeImg, 0, 0, width, height);
   // vijand
   fill("red");
   rect(VijandX - 25, VijandY - 25, 50, 50);
@@ -251,7 +251,7 @@ function drawHealthBarsVijand(x, y, healthVijand, Max_health) {
 function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
-
+   templeImg = loadImage("temple.jpg");
   // Kleur de achtergrond blauw, zodat je het kunt zien
   background('blue');
 }
