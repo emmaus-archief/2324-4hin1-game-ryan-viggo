@@ -16,8 +16,9 @@
 /* globale variabelen die je gebruikt in je game */
 /* ********************************************* */
 const SPELEN = 1;
-const GAMEOVER = 2;
+const GAMEOVERspeler = 2;
 const UITLEG = 3;
+const GAMEOVERvijand = 4;
 var spelStatus = UITLEG;
 
 const KEY_a = 65;
@@ -301,16 +302,35 @@ function draw() {
     verwerkBotsing();
     tekenAlles();
     if (health <= 0) {
-      spelStatus = GAMEOVER;
+      spelStatus = GAMEOVERspeler;
+    }
+    if (healthVijand <= 0) {
+      spelStatus = GAMEOVERvijand;
     }
     console.log("spelen");
   }
-  if (spelStatus === GAMEOVER) {
+  if (spelStatus === GAMEOVERspeler) {
     // teken game-over scherm
     console.log("game over");
     textSize(50);
     fill("orange");
-    text("GAME OVER, druk spatie voor start", 200, 100);
+    text("GAME OVER SPELER 2 WINT, druk spatie voor start", 50, 200);
+    if (keyIsDown(32)) {
+      health = health + 100;
+      healthVijand = healthVijand + 100;
+      spelerX = 600
+      spelerY = 600
+      VijandX = 850
+      VijandY = 600
+      spelStatus = UITLEG;
+    }
+  }
+  if (spelStatus === GAMEOVERvijand) {
+    // teken game-over scherm
+    console.log("game over");
+    textSize(50);
+    fill("orange");
+    text("GAME OVER SPELER 1 WINT, druk spatie voor start", 50, 200);
     if (keyIsDown(32)) {
       health = health + 100;
       healthVijand = healthVijand + 100;
