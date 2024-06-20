@@ -228,7 +228,7 @@ var tekenAlles = function() {
   // achtergrond
   image(templeImg, 0, 0, width, height);
   // vijand
- 
+
   // kogel
   fill("red");
   ellipse(kogelX, kogelY, 20, 20);
@@ -237,9 +237,9 @@ var tekenAlles = function() {
   ellipse(VijandkogelX, VijandkogelY, 20, 20);
   // speler
 
-   //FIGHT box onder
-  fill("lichtgreen");
-  rect(fightboxonderX, fightboxonderY, 600, 75, 45);
+  //FIGHT box onder
+  fill("lightgreen");
+  rect(fightboxonderX, fightboxonderY, 600, 50, 45);
   //FIGHT box
   fill("darkgreen");
   rect(FightBoxX, FightBoxY, 675, 75, 45);
@@ -302,13 +302,31 @@ function draw() {
     textSize(60)
     image(JungleImg, 0, 0, width, height);
     fill("white");
-    text("START", 550, 300);
+    text("START", 550, 250);
     strokeWeight(6);
     stroke("black");
     textSize(50);
     fill("yellow");
-    text("druk op enter om te beginnen", 325, 400)
-    
+    text("druk op enter om te beginnen", 325, 350)
+    textSize(30);
+    fill("yellow");
+    text("controls", 550, 450)
+    text("player 1", 400, 500)
+    text("player 2", 700, 500)
+    textSize(20);
+    text("- a & d links en rechts movement", 400, 530)
+    text("- q & e links en rechtsdashen", 400, 560)
+    text("- w springen", 400, 590)
+    text("- s schieten", 400, 620)
+    text("- j & l links en rechts movement", 700, 530)
+    text("- u & o links en rechtsdashen", 700, 560)
+    text("- i springen", 700, 590)
+    text("- k schieten", 700, 620)
+
+
+
+
+
 
 
 
@@ -333,11 +351,14 @@ function draw() {
     image(pixelvijand, VijandX - 25, VijandY - 100, 200, 200);
     textSize(50);
     fill("orange");
-    strokeWeight(10);
+    strokeWeight(5);
     stroke("black");
-    text("FIGHT", 550, 100);
-    
-    
+    text("-=- -=- FIGHT -=- -=-", 400, 100);
+    textSize(40)
+    text("speler 1", 55, 35);
+    text("speler 2", 1075, 35);
+
+
     console.log("spelen");
   }
   if (spelStatus === GAMEOVERspeler) {
@@ -345,7 +366,7 @@ function draw() {
     console.log("game over");
     textSize(50);
     fill("orange");
-    text("GAME OVER SPELER 2 WINT, druk spatie voor start", 50, 200);
+    text("GAME OVER SPELER 2 WINT, druk spatie voor start", 50, 250);
     strokeWeight(5);
     stroke("black");
     if (keyIsDown(32)) {
@@ -363,7 +384,7 @@ function draw() {
     console.log("game over");
     textSize(50);
     fill("orange");
-    text("GAME OVER SPELER 1 WINT, druk spatie voor start", 50, 200);
+    text("GAME OVER SPELER 1 WINT, druk spatie voor start", 50, 250);
     strokeWeight(5);
     stroke("black");
     if (keyIsDown(32)) {
