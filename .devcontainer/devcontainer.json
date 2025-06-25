@@ -2,7 +2,7 @@
 // more info https://containers.dev/implementors/json_reference/
 {
     // configure image
-	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	"image": "mcr.microsoft.com/devcontainers/universal:latest",
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/http-server:1": {}
 	},
